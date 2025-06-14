@@ -1,12 +1,53 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🛒 Mini E-commerce
 
-Currently, two official plugins are available:
+Este projeto foi desenvolvido como parte de um trabalho acadêmico com o objetivo de simular um e-commerce simples. Ele permite que usuários cadastrem-se, visualizem produtos, adicionem itens ao carrinho e finalizem uma compra. Todos os dados são armazenados localmente utilizando o `localStorage`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- JavaScript
+- HTML & CSS
+- LocalStorage (persistência dos dados no navegador)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✅ Funcionalidades
+
+- Cadastro e login de usuários
+- Listagem de produtos com imagem e preço
+- Adição e remoção de produtos no carrinho
+- Finalização de pedido com resumo da compra
+- Armazenamento de dados no navegador com `localStorage`
+
+## ⚙️ Como Executar Localmente
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/LucasFSouza552/trabalho-Mini-E-commerce.git
+   ```
+2. Acesse a pasta do projeto:
+   ```bash
+   cd trabalho-Mini-E-commerce
+   ```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+4. Inicie o servidor de desenvolvimento com Vite:
+   ```bash
+   npm run dev
+   ```
+5. Acesse no navegador: [http://localhost:5173](http://localhost:5173)
+
+## 📌 Observações
+
+- O projeto não possui backend.
+- Ideal para fins de estudo, aprendizado de manipulação do DOM e simulação de um sistema de e-commerce simples.
+
+## 👨‍💻 Desenvolvido por
+
+- [Lucas](https://github.com/LucasFSouza552)
+- [Arthur Steiner](https://github.com/arthursteinerr)  
+- [Pedro Caçador](https://github.com/PedroCacador)  
+- [Mr. Ártico](https://github.com/MrArtico)  
+- [Jotinha](https://github.com/Jotinha14)
