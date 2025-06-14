@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
 import styled from 'styled-components';
-import axios from 'axios';
-
-const api = axios.create({
-  baseURL: 'https://fakestoreapi.com'
-});
+import { createUser, validateLogin } from '../utils/api';
 
 const AuthPage = ({ onLogin }) => {
   const navigate = useNavigate();
@@ -64,27 +60,13 @@ const AuthPage = ({ onLogin }) => {
 
     try {
       if (isLogin) {
-        const response = await api.post('/auth/login', {
-          username: formData.username,
-          password: formData.password
-        });
-        onLogin(response.data.token);
+        const loginResponse = await validateLogin(formData.username, formData.password);
+        onLogin(loginResponse);
         navigate('/');
       } else {
-        await api.post('/users', {
-          email: formData.email,
-          username: formData.email,
-          password: formData.password,
-          name: {
-            firstname: formData.name.split(' ')[0],
-            lastname: formData.name.split(' ').slice(1).join(' ')
-          }
-        });
-        const loginResponse = await api.post('/auth/login', {
-          username: formData.email,
-          password: formData.password
-        });
-        onLogin(loginResponse.data.token);
+        await createUser(formData);
+        const loginResponse = await validateLogin(formData.email, formData.password);
+        onLogin(loginResponse);
         navigate('/');
       }
     } catch (error) {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import styled from 'styled-components';
 import ProductDetails from '../components/ProductDetails';
+import { getProductsById } from '../utils/api';
 
 const ProductPage = ({ onAddToCart, isAuthenticated }) => {
   const { id } = useParams();
@@ -14,8 +14,8 @@ const ProductPage = ({ onAddToCart, isAuthenticated }) => {
     const fetchProduct = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
-        setProduct(response.data);
+        const productResponse = await getProductsById(id);
+        setProduct(productResponse);
         setError(null);
       } catch (err) {
         setError('Falha ao carregar o produto. Por favor, tente novamente mais tarde.');

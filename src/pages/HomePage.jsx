@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ProductCard from '../components/ProductCard';
+import { getProductByCategory, getProducts } from '../utils/api';
 
 const HomePage = ({ onAddToCart, selectedCategory, isAuthenticated }) => {
 	const [products, setProducts] = useState([]);
@@ -15,13 +15,10 @@ const HomePage = ({ onAddToCart, selectedCategory, isAuthenticated }) => {
 		const fetchProducts = async () => {
 			setLoading(true);
 			try {
-				const url = selectedCategory
-					? `https://fakestoreapi.com/products/category/${selectedCategory}`
-					: 'https://fakestoreapi.com/products';
-				const response = await axios.get(url);
+				const response = selectedCategory ? await getProductByCategory(selectedCategory) : getProducts()
 				setProducts(response.data);
 				setError(null);
-				setCurrentPage(1); // Reset to first page when category changes
+				setCurrentPage(1);
 			} catch (err) {
 				setError('Failed to fetch products. Please try again later.');
 				console.error('Error fetching products:', err);
@@ -33,7 +30,6 @@ const HomePage = ({ onAddToCart, selectedCategory, isAuthenticated }) => {
 		fetchProducts();
 	}, [selectedCategory]);
 
-	// Calculate pagination
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 	const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);

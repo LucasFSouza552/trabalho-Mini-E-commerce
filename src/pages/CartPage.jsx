@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaArrowRight, FaLock, FaTrash, FaCreditCard, FaMoneyBillWave, FaMobileAlt } from 'react-icons/fa';
 import styled from 'styled-components';

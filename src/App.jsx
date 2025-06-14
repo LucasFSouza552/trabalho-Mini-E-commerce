@@ -10,6 +10,8 @@ import CartPage from './pages/CartPage';
 import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 
+import { getProductsById, getUsersById, getProductCategories } from './utils/api';
+
 const App = () => {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('cart');
@@ -35,8 +37,8 @@ const App = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('https://fakestoreapi.com/products/categories');
-        setCategories(response.data);
+        const productCategoriesList = await getProductCategories();
+        setCategories(productCategoriesList);
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
@@ -48,8 +50,8 @@ const App = () => {
     const fetchUserData = async () => {
       if (isAuthenticated) {
         try {
-          const response = await axios.get('https://fakestoreapi.com/users/1'); // Simulando busca do usuário atual
-          setUser(response.data);
+          const response = await getUsersById(1);
+          setUser(response);
         } catch (error) {
           console.error('Error fetching user data:', error);
           if (error.response?.status === 401) {
@@ -94,8 +96,8 @@ const App = () => {
       ));
     } else {
       try {
-        const response = await axios.get(`https://fakestoreapi.com/products/${productId}`);
-        setCart([...cart, { ...response.data, quantity: 1 }]);
+        const productData = await getProductsById(productId);
+        setCart([...cart, { ...productData, quantity: 1 }]);
       } catch (error) {
         console.error('Error adding product to cart:', error);
       }
