@@ -15,8 +15,8 @@ const HomePage = ({ onAddToCart, selectedCategory, isAuthenticated }) => {
 		const fetchProducts = async () => {
 			setLoading(true);
 			try {
-				const response = selectedCategory ? await getProductByCategory(selectedCategory) : getProducts()
-				setProducts(response.data);
+				const response = selectedCategory ? await getProductByCategory(selectedCategory) : await getProducts()
+				setProducts(response);
 				setError(null);
 				setCurrentPage(1);
 			} catch (err) {
